@@ -47,37 +47,6 @@
     } else setGap(svg, d);
   });
 
-  // ===== TEST =====
-  const quiz = document.getElementById('quiz');
-  const result = document.getElementById('quizResult');
-  const testDuo = document.getElementById('testDuo');
-  const hidden = document.querySelector('input[name="test_result"]');
-  const tiers = [
-    { max: 2, title: 'Зрелая позиция', text: 'Вы умеете держать контакт с собой и партнёром. Но и у вас есть точки роста, которые стоит разобрать.' },
-    { max: 5, title: 'Вы на переходе', text: 'Осознание уже есть, но подсознательные сценарии ещё управляют вами. Самое время заглянуть глубже.' },
-    { max: 8, title: 'Позиция боли', text: 'Вы живёте из боли травмированного ребёнка, которому не хватило безопасности и принятия. Это не приговор, а точка входа в трансформацию: признание станет первым шагом к зрелым отношениям.' }
-  ];
-  quiz?.addEventListener('change', () => {
-    const answers = [...quiz.querySelectorAll('input[type=radio]:checked')];
-    const yes = answers.filter(a => a.value === '1').length;
-    // circles move apart with every «да»
-    setGap(testDuo, 70 + yes * (240 / 8));
-    if (answers.length < 8) return;
-    const tier = tiers.find(t => yes <= t.max);
-    result.innerHTML = '';
-    const h = document.createElement('h3');
-    h.textContent = tier.title + ': «да» ' + yes + ' из 8';
-    const p = document.createElement('p');
-    p.textContent = tier.text;
-    const a = document.createElement('a');
-    a.className = 'btn';
-    a.href = '#contact';
-    a.textContent = 'Обсудить результат на бесплатной сессии';
-    result.append(h, p, a);
-    if (hidden) hidden.value = 'Тест: «да» ' + yes + ' из 8 — ' + tier.title;
-    a.addEventListener('click', e => { e.preventDefault(); document.querySelector('#contact').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); });
-  });
-
   // ===== FORM SUBMIT → CLOUDFLARE WORKER → TELEGRAM =====
   const form = document.getElementById('leadForm');
   form?.addEventListener('submit', async e => {
@@ -132,11 +101,11 @@
   // ===== REVEAL: parts of each section enter one after another =====
   const groups = [
     '.hero h1, .hero .lead, .hero__actions, .hero__art',
-    '.pains__head h2, .pains__head p, .quotes li, .pains__foot',
-    '.method .pic, .method__body > *, .found > div, .levels li',
-    '.dialog__intro > *, .pairs li, .pic--wide',
-    '.test__head > *, .quiz__list li, .quiz__result',
-    '.prices__head > *, .ptable tbody tr, .prices__tracks > *, .topics > *, .topics li, .results li',
+    '.asks h2, .asks__list li',
+    '.method .pic, .method__body > *, .found > div',
+    '.lens__text > *, .lens__fig > *',
+    '.test__main > *, .test__paths > div',
+    '.prices__head > *, .tracks > div, .plist li, .plist__note, .diag',
     '.formats__title, .fmt, .group article',
     '.process h2, .steps li',
     '.faq h2, .faq__item',
@@ -166,7 +135,7 @@
   });
 
   // slow drift of the dance picture while scrolling
-  const drift = document.querySelector('[data-drift]');
+  const drift = null;
   if (drift && !reduce) {
     const tick = () => {
       const r = drift.parentElement.getBoundingClientRect();
