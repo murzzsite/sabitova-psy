@@ -194,7 +194,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .diag p:last-child { margin: 24px 0 0; }
 .group { grid-template-columns: 1fr 1fr; gap: clamp(20px, 3vw, 40px); }
 .group article:last-child { grid-column: 1 / -1; }
-.contact__photo { display: none; }
+.photo-wide { display: block; width: 100%; max-width: 560px; height: clamp(300px, 34vw, 480px); object-fit: cover; object-position: 50% 18%; margin-top: 36px; }
 
 /* MOTION (content stays visible if script fails) */
 .js .reveal { opacity: 0; }
