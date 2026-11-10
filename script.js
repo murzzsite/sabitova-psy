@@ -59,6 +59,7 @@
     fd.forEach((v, k) => { payload[k] = v; });
 
     if (payload._gotcha) return;
+    if (!payload.consent_pd) { alert('Отметьте согласие на обработку персональных данных'); return; }
 
     if (!payload.name || (!payload.phone && !payload.contact)) {
       alert('Заполните имя и контактные данные');
