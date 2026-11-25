@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Пока сайт на github.io, robots.txt учитывается поисковиками только в корне домена.
+# После переноса на собственный домен заменить адрес карты сайта на https://<домен>/sitemap.xml
+Sitemap: https://murzzsite.github.io/sabitova-psy/sitemap.xml
